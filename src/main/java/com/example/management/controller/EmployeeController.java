@@ -26,7 +26,7 @@ public class EmployeeController {
 
     @GetMapping(value = "api/employee/{id}")
     public ResponseEntity<EmployeeRequest> getEmployeeById(@PathVariable Long id) {
-        final EmployeeRequest employeeRequest = employeeService.getEmployeeDtoById(id);
+        final EmployeeRequest employeeRequest = employeeService.getEmployeeRequestById(id);
         return new ResponseEntity<>(employeeRequest, HttpStatus.ACCEPTED);
     }
 
@@ -47,7 +47,7 @@ public class EmployeeController {
     }
 
     @PutMapping(value = "api/employee/{id}")
-    public ResponseEntity<Employee> editEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<EmployeeResponse> editEmployee(@RequestBody Employee employee) {
         return new ResponseEntity<>(employeeService.editEmployee(employee), HttpStatus.ACCEPTED);
     }
 }

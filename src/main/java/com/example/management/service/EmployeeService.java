@@ -1,6 +1,7 @@
 package com.example.management.service;
 
 import com.example.management.entity.Employee;
+import com.example.management.entity.Transaction;
 import com.example.management.entity.dto.EmployeeResponse;
 import com.example.management.repository.EmployeeRepository;
 import com.example.management.entity.dto.TransactionRequest;
@@ -38,7 +39,7 @@ public class EmployeeService {
         List<Long> ids = employeeRepository.findById(id)
                 .get()
                 .getTransactionList().stream()
-                .map(transaction -> transaction.getId())
+                .map(Transaction::getId)
                 .collect(Collectors.toList());
 
         return transactionService.getTransactions(ids);
@@ -48,19 +49,18 @@ public class EmployeeService {
         return employeeRepository.save(employeeMapper.mapToEmployee(employeeRequest)) ;
     }
 
-    public EmployeeRequest getEmployeeDtoById(Long id) {
+    public EmployeeRequest getEmployeeRequestById(Long id) {
         final Employee employee = employeeRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Employee with id " + id + " not found")
         );
-        return new EmployeeMapper().mapToEmployeeResponse(employee);
+        return new EmployeeMapper().mapToEmployeeRequest(employee);
     }
 
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
     }
 
-    public Employee editEmployee(Employee employee) {
-        return employeeRepository.saveAndFlush(employee
-        );
+    public EmployeeResponse editEmployee(Employee employee) {
+        return employeeMapper.mapToEmployeeResponse(employeeRepository.saveAndFlush(employee));
     }
 }

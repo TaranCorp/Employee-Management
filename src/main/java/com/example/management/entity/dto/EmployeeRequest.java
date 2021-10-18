@@ -18,4 +18,5 @@ public class EmployeeRequest {
     private Date birthDate;
     private Date employmentDate;
     private String position;
+    private Double payment;
 }

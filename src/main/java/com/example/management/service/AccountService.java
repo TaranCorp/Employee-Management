@@ -27,7 +27,7 @@ public class AccountService {
     }
 
     public void setEmployee(Long idEmployee, Long idAccount) {
-        employeeService.getEmployeeDtoById(idEmployee);
+        employeeService.getEmployeeRequestById(idEmployee);
         this.getAccountDtoById(idAccount);
         accountRepository.setEmployeeId(idEmployee, idAccount);
     }
