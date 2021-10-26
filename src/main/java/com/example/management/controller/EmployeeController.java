@@ -27,7 +27,7 @@ public class EmployeeController {
     @GetMapping(value = "api/employee/{id}")
     public ResponseEntity<EmployeeRequest> getEmployeeById(@PathVariable Long id) {
         final EmployeeRequest employeeRequest = employeeService.getEmployeeRequestById(id);
-        return new ResponseEntity<>(employeeRequest, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(employeeRequest, HttpStatus.OK);
     }
 
     @GetMapping(value = "api/employee/transactions")
@@ -37,7 +37,7 @@ public class EmployeeController {
 
     @PostMapping(value = "api/employee")
     public ResponseEntity<EmployeeRequest> addEmployee(@RequestBody EmployeeRequest employeeRequest) {
-        final Employee employee = employeeService.addEmployee(employeeRequest);
+        employeeService.addEmployee(employeeRequest);
         return new ResponseEntity<>(employeeRequest, HttpStatus.CREATED);
     }
 
