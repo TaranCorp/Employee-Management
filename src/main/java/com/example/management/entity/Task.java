@@ -21,7 +21,6 @@ public class Task {
     private String name;
     @Column(name = "created")
     private LocalDateTime created;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "task_id")
+    @ManyToMany(mappedBy = "taskList", cascade = CascadeType.ALL)
     private List<Employee> employeeList;
 }

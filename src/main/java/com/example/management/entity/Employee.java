@@ -33,4 +33,11 @@ public class Employee {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
     private List<Transaction> transactionList;
+    @ManyToMany
+    @JoinTable(
+            name = "todo_employee_task",
+            joinColumns = {@JoinColumn(name = "employee_id")},
+            inverseJoinColumns = {@JoinColumn(name = "task_id")}
+    )
+    private List<Task> taskList;
 }
