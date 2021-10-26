@@ -20,7 +20,7 @@ public class TransactionService {
         return transactionMapper.mapToTransactionRequests(transactionRepository.findAllById(id));
     }
 
-    public void addTransaction(Transaction transaction) {
-        transactionRepository.save(transaction);
+    public void addTransaction(TransactionRequest transactionRequest) {
+        transactionRepository.save(transactionMapper.mapToTransaction(transactionRequest));
     }
 }

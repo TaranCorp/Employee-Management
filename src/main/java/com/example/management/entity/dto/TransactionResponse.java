@@ -2,7 +2,6 @@ package com.example.management.entity.dto;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,4 +13,5 @@ public class TransactionResponse {
     private Long id;
     private LocalDateTime created;
     private Double amount;
+    private Long employee_id;
 }

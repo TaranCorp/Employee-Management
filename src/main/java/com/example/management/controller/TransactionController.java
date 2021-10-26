@@ -1,6 +1,7 @@
 package com.example.management.controller;
 
 import com.example.management.entity.Transaction;
+import com.example.management.entity.dto.TransactionRequest;
 import com.example.management.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +15,7 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @PostMapping(value = "api/transaction")
-    public void addTransaction(@RequestBody Transaction transaction) {
-        transactionService.addTransaction(transaction);
+    public void addTransaction(@RequestBody TransactionRequest transactionRequest) {
+        transactionService.addTransaction(transactionRequest);
     }
 }

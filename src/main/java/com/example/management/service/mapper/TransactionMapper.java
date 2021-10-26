@@ -12,7 +12,7 @@ public class TransactionMapper {
 
     public Transaction mapToTransaction(TransactionRequest transactionRequest) {
         return Transaction.builder()
-                .id(transactionRequest.getId())
+                .employee_id(transactionRequest.getEmployee_id())
                 .amount(transactionRequest.getAmount())
                 .build();
     }
@@ -25,7 +25,7 @@ public class TransactionMapper {
 
     public TransactionRequest mapToTransactionRequest(Transaction transaction) {
         return TransactionRequest.builder()
-                .id(transaction.getId())
+                .employee_id(transaction.getEmployee_id())
                 .amount(transaction.getAmount())
                 .build();
     }

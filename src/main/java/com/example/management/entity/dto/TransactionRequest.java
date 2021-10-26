@@ -8,7 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class TransactionRequest {
-    private Long id;
     private Double amount;
     private Long employee_id;
 }
