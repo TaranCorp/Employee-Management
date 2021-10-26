@@ -1,7 +1,7 @@
 --liquibase formatted sql
 --changeset tarancorp:1
 
-create table employee(
+create table if not exists employee(
     id SERIAL PRIMARY KEY NOT NULL,
     name varchar(50) NOT NULL,
     surname varchar(50) NOT NULL,
