@@ -3,6 +3,7 @@ package com.example.management.service;
 import com.example.management.entity.Employee;
 import com.example.management.entity.Transaction;
 import com.example.management.entity.dto.EmployeeResponse;
+import com.example.management.entity.dto.TransactionResponse;
 import com.example.management.repository.EmployeeRepository;
 import com.example.management.entity.dto.TransactionRequest;
 import com.example.management.service.mapper.EmployeeMapper;
@@ -35,7 +36,7 @@ public class EmployeeService {
         return employeeMapper.mapToEmployeesResponses(employeeList);
     }
 
-    public List<TransactionRequest> getTransactions(final Long id) {
+    public List<TransactionResponse> getTransactions(final Long id) {
         List<Long> ids = employeeRepository.findById(id)
                 .get()
                 .getTransactionList().stream()
@@ -60,7 +61,11 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public EmployeeResponse editEmployee(Employee employee) {
-        return employeeMapper.mapToEmployeeResponse(employeeRepository.saveAndFlush(employee));
+    public EmployeeResponse editEmployee(EmployeeResponse employeeResponse) {
+        return employeeMapper.mapToEmployeeResponse(
+                employeeRepository.saveAndFlush(
+                        employeeMapper.mapToEmployee(
+                                employeeResponse
+                        )));
     }
 }

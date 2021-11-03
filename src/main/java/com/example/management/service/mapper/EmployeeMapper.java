@@ -22,6 +22,19 @@ public class EmployeeMapper {
                 .build();
     }
 
+    public Employee mapToEmployee(EmployeeResponse employeeResponse) {
+        return Employee.builder()
+                .id(employeeResponse.getId())
+                .name(employeeResponse.getName())
+                .surname(employeeResponse.getSurname())
+                .employmentDate(employeeResponse.getEmploymentDate())
+                .birthDate(employeeResponse.getBirthDate())
+                .phoneNumber(employeeResponse.getPhoneNumber())
+                .position(employeeResponse.getPosition())
+                .payment(employeeResponse.getPayment())
+                .build();
+    }
+
     public List<EmployeeRequest> mapToEmployeesRequests(List<Employee> employeeList) {
         return employeeList.stream()
                 .map(this::mapToEmployeeRequest)

@@ -1,6 +1,6 @@
 package com.example.management.service;
 
-import com.example.management.entity.Transaction;
+import com.example.management.entity.dto.TransactionResponse;
 import com.example.management.repository.TransactionRepository;
 import com.example.management.entity.dto.TransactionRequest;
 import com.example.management.service.mapper.TransactionMapper;
@@ -16,8 +16,8 @@ public class TransactionService {
     private final TransactionRepository transactionRepository;
     private final TransactionMapper transactionMapper;
 
-    public List<TransactionRequest> getTransactions (List<Long> id) {
-        return transactionMapper.mapToTransactionRequests(transactionRepository.findAllById(id));
+    public List<TransactionResponse> getTransactions (List<Long> id) {
+        return transactionMapper.mapToTransactionResponses(transactionRepository.findAllById(id));
     }
 
     public void addTransaction(TransactionRequest transactionRequest) {

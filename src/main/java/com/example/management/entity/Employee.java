@@ -3,6 +3,7 @@ package com.example.management.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,12 +33,16 @@ public class Employee {
     private Double payment;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
-    private List<Transaction> transactionList;
+    private List<Transaction> transactionList = new ArrayList<>();
     @ManyToMany
     @JoinTable(
             name = "todo_employee_task",
             joinColumns = {@JoinColumn(name = "employee_id")},
             inverseJoinColumns = {@JoinColumn(name = "task_id")}
     )
-    private List<Task> taskList;
+    private List<Task> taskList = new ArrayList<>();
+
+    public void addTask(Task task) {
+        taskList.add(task);
+    }
 }

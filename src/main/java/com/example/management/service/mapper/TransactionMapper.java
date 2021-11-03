@@ -2,6 +2,7 @@ package com.example.management.service.mapper;
 
 import com.example.management.entity.Transaction;
 import com.example.management.entity.dto.TransactionRequest;
+import com.example.management.entity.dto.TransactionResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,6 +27,20 @@ public class TransactionMapper {
     public TransactionRequest mapToTransactionRequest(Transaction transaction) {
         return TransactionRequest.builder()
                 .employee_id(transaction.getEmployee_id())
+                .amount(transaction.getAmount())
+                .build();
+    }
+
+    public List<TransactionResponse> mapToTransactionResponses(List<Transaction> transactionList) {
+        return transactionList.stream()
+                .map(this::mapToTransactionResponse)
+                .collect(Collectors.toList());
+    }
+
+    public TransactionResponse mapToTransactionResponse(Transaction transaction) {
+        return TransactionResponse.builder()
+                .id(transaction.getId())
+                .created(transaction.getCreated())
                 .amount(transaction.getAmount())
                 .build();
     }

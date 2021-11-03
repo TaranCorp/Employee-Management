@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,5 +23,9 @@ public class Task {
     @Column(name = "created")
     private LocalDateTime created;
     @ManyToMany(mappedBy = "taskList", cascade = CascadeType.ALL)
-    private List<Employee> employeeList;
+    private List<Employee> employeeList = new ArrayList<>();
+
+    public void addEmployee(Employee employee) {
+        employeeList.add(employee);
+    }
 }

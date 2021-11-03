@@ -2,7 +2,6 @@ package com.example.management.entity.dto;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import java.util.Date;
 
 @Getter
