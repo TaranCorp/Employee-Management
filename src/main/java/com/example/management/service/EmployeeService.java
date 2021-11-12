@@ -47,14 +47,23 @@ public class EmployeeService {
     }
 
     public Employee addEmployee(EmployeeRequest employeeRequest) {
+
+        String name = employeeRequest.getName();
+        name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
+        employeeRequest.setName(name);
+
+        String surname = employeeRequest.getSurname();
+        surname = surname.substring(0,1).toUpperCase() + surname.substring(1).toLowerCase();
+        employeeRequest.setSurname(surname);
+
         return employeeRepository.save(employeeMapper.mapToEmployee(employeeRequest)) ;
     }
 
-    public EmployeeRequest getEmployeeRequestById(Long id) {
+    public EmployeeResponse getEmployeeResponseById(Long id) {
         final Employee employee = employeeRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("Employee with id " + id + " not found")
         );
-        return new EmployeeMapper().mapToEmployeeRequest(employee);
+        return new EmployeeMapper().mapToEmployeeResponse(employee);
     }
 
     public void deleteEmployee(Long id) {
