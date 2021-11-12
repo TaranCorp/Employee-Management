@@ -40,5 +40,6 @@ public class AccountController {
         }
         accountService.deleteAccount(id);
         return new ResponseEntity(HttpStatus.OK);
+
     }
 }
