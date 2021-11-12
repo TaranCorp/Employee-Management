@@ -26,6 +26,9 @@ public class TaskService {
     }
 
     public TaskResponse addTask(TaskRequest taskRequest) {
+        String name = taskRequest.getName();
+        name = name.substring(0,1).toUpperCase() + name.substring(1);
+        taskRequest.setName(name);
         return taskMapper.mapToTaskResponse(
                 taskRepository.save(
                         taskMapper.mapToTask(
