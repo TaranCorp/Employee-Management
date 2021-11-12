@@ -18,6 +18,7 @@ public class EmployeeMapper {
                 .employmentDate(employeeRequest.getEmploymentDate())
                 .birthDate(employeeRequest.getBirthDate())
                 .phoneNumber(employeeRequest.getPhoneNumber())
+                .payment(employeeRequest.getPayment())
                 .position(employeeRequest.getPosition())
                 .build();
     }
