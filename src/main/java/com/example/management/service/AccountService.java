@@ -19,6 +19,7 @@ public class AccountService {
     private final EmployeeService employeeService;
 
     public void addAccount(AccountRequest accountRequest) {
+        accountRequest.setEmail(accountRequest.getEmail().toLowerCase());
         accountRepository.save(accountMapper.mapToAccount(accountRequest));
     }
 
@@ -27,7 +28,7 @@ public class AccountService {
     }
 
     public void setEmployee(Long idEmployee, Long idAccount) {
-        employeeService.getEmployeeRequestById(idEmployee);
+        employeeService.getEmployeeResponseById(idEmployee);
         this.getAccountDtoById(idAccount);
         accountRepository.setEmployeeId(idEmployee, idAccount);
     }
