@@ -1,11 +1,10 @@
 package com.example.management.controller;
 
-import com.example.management.entity.Employee;
 import com.example.management.entity.dto.EmployeeResponse;
 import com.example.management.entity.dto.TransactionResponse;
 import com.example.management.service.EmployeeService;
 import com.example.management.entity.dto.EmployeeRequest;
-import com.example.management.entity.dto.TransactionRequest;
+import com.example.management.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +17,7 @@ import java.util.List;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final TaskService taskService;
 
     @GetMapping(value = "api/employee")
     public ResponseEntity<List<EmployeeResponse>> getEmployees(@PathVariable(required = false) Integer page) {
@@ -29,10 +29,10 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "api/employee/{id}")
-    public ResponseEntity<EmployeeRequest> getEmployeeById(@PathVariable Long id) {
-        final EmployeeRequest employeeRequest = employeeService.getEmployeeRequestById(id);
+    public ResponseEntity<EmployeeResponse> getEmployeeById(@PathVariable Long id) {
+        final EmployeeResponse employeeResponse = employeeService.getEmployeeResponseById(id);
         return new ResponseEntity<>(
-                employeeRequest,
+                employeeResponse,
                 HttpStatus.OK
         );
     }
@@ -52,6 +52,13 @@ public class EmployeeController {
                 employeeRequest,
                 HttpStatus.CREATED
         );
+    }
+
+    @PostMapping(value = "api/employeeTask")
+    public ResponseEntity setEmployeeToTask(@RequestParam Long employeeId, @RequestParam Long taskId) {
+        taskService.setEmployeeToTask(taskId, employeeId);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @DeleteMapping(value = "api/employee/{id}")
