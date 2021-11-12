@@ -22,8 +22,8 @@ public class Task {
     private String name;
     @Column(name = "created")
     private LocalDateTime created;
-    @ManyToMany(mappedBy = "taskList", cascade = CascadeType.ALL)
-    private List<Employee> employeeList = new ArrayList<>();
+    @ManyToMany(mappedBy = "taskList")
+    private final List<Employee> employeeList = new ArrayList<>();
 
     public void addEmployee(Employee employee) {
         employeeList.add(employee);
