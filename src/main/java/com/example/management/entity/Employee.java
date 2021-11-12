@@ -33,14 +33,14 @@ public class Employee {
     private Double payment;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
-    private List<Transaction> transactionList = new ArrayList<>();
+    private final List<Transaction> transactionList = new ArrayList<>();
     @ManyToMany
     @JoinTable(
             name = "todo_employee_task",
             joinColumns = {@JoinColumn(name = "employee_id")},
             inverseJoinColumns = {@JoinColumn(name = "task_id")}
     )
-    private List<Task> taskList = new ArrayList<>();
+    private final List<Task> taskList = new ArrayList<>();
 
     public void addTask(Task task) {
         taskList.add(task);
